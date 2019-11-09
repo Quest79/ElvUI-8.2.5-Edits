@@ -70,15 +70,15 @@ end
 
 local function SetStatusBarBackdropHealthbar(self, backdrop_texture, edge_texture, edge_size, offset)
   self.Border:ClearAllPoints()
-  self.Border:SetPoint("TOPLEFT", self, "TOPLEFT", - offset, offset)
-  self.Border:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", offset, - offset)
+  self.Border:SetPoint("TOPLEFT", self, "TOPLEFT", -1.5, 1.5)
+  self.Border:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 1.5, - 1.5)
   self.Border:SetBackdrop({
     bgFile = backdrop_texture,
     edgeFile = edge_texture,
-    edgeSize = edge_size,
-    insets = { left = offset, right = offset, top = offset, bottom = offset },
+    edgeSize = .5,
+    insets = { left = -1, right = -1, top = -1, bottom = -1 },
   })
-  self.Border:SetBackdropBorderColor(0, 0, 0, 1)
+  self.Border:SetBackdropBorderColor(.38, .38, .38, 1)
 end
 
 local function SetEliteBorder(self, texture)
@@ -164,6 +164,8 @@ function Addon:CreateCastbar(parent)
   local frame = CreateFrame("StatusBar", nil, parent)
   frame:Hide()
 
+
+  frame:SetFrameStrata("LOW")
   frame:SetFrameLevel(parent:GetFrameLevel() + 4)
 
   frame.Border = CreateFrame("Frame", nil, frame)

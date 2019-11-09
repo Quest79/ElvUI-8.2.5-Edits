@@ -227,6 +227,26 @@ local function updateButtonFont()
 	end
 end
 
+
+--schism
+function sui2CreateShadow(f, r, g, b, a, s1, s2, edge)
+
+	local sh = CreateFrame('Frame', nil, f)
+
+	sh:SetFrameLevel(1)
+	sh:SetFrameStrata(f:GetFrameStrata())
+	sh:SetOutside(f, s1, s2)
+	sh:SetBackdrop( {
+		edgeFile = LSM:Fetch('border', 'ElvUI GlowBorder'), edgeSize = E:Scale(edge),
+		insets = {left = E:Scale(5), right = E:Scale(5), top = E:Scale(5), bottom = E:Scale(5)},
+	})
+	--sh:SetBackdropColor(1, 0, 0, 0.6)
+	sh:SetBackdropBorderColor(r, g, b, a)
+
+	f.sh = sh
+end
+
+
 local function Panel_OnShow(self)
 	self:SetFrameLevel(0)
 end
@@ -235,37 +255,49 @@ function mod:ChangeLayout()
 
 	LeftMiniPanel:Height(PANEL_HEIGHT)
 	RightMiniPanel:Height(PANEL_HEIGHT)
+	local width, height = UIParent:GetSize()
 
+	-- Schism modification for spacing. I wanted all these to look anchored to the bottom of the screen.
+	schisMod = 2
+	
 	-- Left dt panel
 	Bui_ldtp:SetFrameStrata('BACKGROUND')
-	Bui_ldtp:Point('TOPLEFT', LeftChatPanel, 'BOTTOMLEFT', (SPACING +PANEL_HEIGHT), -SPACING)
-	Bui_ldtp:Point('BOTTOMRIGHT', LeftChatPanel, 'BOTTOMRIGHT', -(SPACING +PANEL_HEIGHT), -PANEL_HEIGHT -SPACING)
+	Bui_ldtp:Point('TOPLEFT', LeftChatPanel, 'BOTTOMLEFT', PANEL_HEIGHT-schisMod*3, 0)
+	Bui_ldtp:Point('BOTTOMRIGHT', LeftChatPanel, 'BOTTOMRIGHT', -PANEL_HEIGHT, -PANEL_HEIGHT)
 	Bui_ldtp:Style('Outside', nil, false, true)
+	--sui2CreateShadow(Bui_ldtp,0,0,0,.4,3,3,3) --schism
+	suiCreateShadow(Bui_ldtp,	1,1,1, .4, 1, 1, 3) 
 
 	-- Right dt panel
 	Bui_rdtp:SetFrameStrata('BACKGROUND')
-	Bui_rdtp:Point('TOPLEFT', RightChatPanel, 'BOTTOMLEFT', (SPACING +PANEL_HEIGHT), -SPACING)
-	Bui_rdtp:Point('BOTTOMRIGHT', RightChatPanel, 'BOTTOMRIGHT', -(SPACING +PANEL_HEIGHT), -PANEL_HEIGHT -SPACING)
+	Bui_rdtp:Point('TOPLEFT', RightChatPanel, 'BOTTOMLEFT', PANEL_HEIGHT, 0)
+	Bui_rdtp:Point('BOTTOMRIGHT', RightChatPanel, 'BOTTOMRIGHT', -PANEL_HEIGHT+schisMod*3, -PANEL_HEIGHT)
 	Bui_rdtp:Style('Outside', nil, false, true)
+	--sui2CreateShadow(Bui_rdtp,0,0,0,.4,3,3,3) --schism
+	suiCreateShadow(Bui_rdtp,	1,1,1, .4, 1, 1, 3) 
 
 	-- Middle dt panel
 	Bui_mdtp:SetFrameStrata('BACKGROUND')
-	Bui_mdtp:Point('BOTTOM', E.UIParent, 'BOTTOM', 0, 2)
-	Bui_mdtp:Width(E.db.benikui.datatexts.middle.width or 400)
-	Bui_mdtp:Height(E.db.benikui.datatexts.middle.height or PANEL_HEIGHT)
+	Bui_mdtp:SetFrameLevel(10)
+	Bui_mdtp:Point('TOPLEFT', Bui_ldtp, 'TOPRIGHT', 14, -12)
+	Bui_mdtp:Point('BOTTOMRIGHT', Bui_rdtp, 'BOTTOMLEFT', -6, 0)
+	--Bui_mdtp:Point('BOTTOM', E.UIParent, 'BOTTOM', 0, -10)
+	--Bui_mdtp:Width(E.db.benikui.datatexts.middle.width or 400)
+	--Bui_mdtp:Height(E.db.benikui.datatexts.middle.height or PANEL_HEIGHT)
 	Bui_mdtp:Style('Outside', nil, false, true)
+	suiCreateShadow(Bui_mdtp,	1,1,1, .4, 1, 1, 3) 
 
 	E:CreateMover(Bui_mdtp, "BuiMiddleDtMover", L['BenikUI Middle DataText'], nil, nil, nil, 'ALL,BenikUI', nil, 'benikui,datatexts')
 
 	-- dummy frame for chat/threat (left)
 	Bui_dchat:SetFrameStrata('LOW')
-	Bui_dchat:Point('TOPLEFT', LeftChatPanel, 'BOTTOMLEFT', 0, -SPACING)
-	Bui_dchat:Point('BOTTOMRIGHT', LeftChatPanel, 'BOTTOMRIGHT', 0, -PANEL_HEIGHT -SPACING)
+	Bui_dchat:Point('TOPLEFT', LeftChatPanel, 'BOTTOMLEFT', 0, -SPACING - schisMod)
+	Bui_dchat:Point('BOTTOMRIGHT', LeftChatPanel, 'BOTTOMRIGHT', 0, -PANEL_HEIGHT -SPACING - schisMod)
 
 	-- dummy frame for threat (right)
 	Bui_dthreat:SetFrameStrata('LOW')
-	Bui_dthreat:Point('TOPLEFT', RightChatPanel, 'BOTTOMLEFT', 0, -SPACING)
-	Bui_dthreat:Point('BOTTOMRIGHT', RightChatPanel, 'BOTTOMRIGHT', 0, -PANEL_HEIGHT -SPACING)
+	Bui_dthreat:Point('TOPLEFT', RightChatPanel, 'BOTTOMLEFT', 0, -SPACING - schisMod)
+	Bui_dthreat:Point('BOTTOMRIGHT', RightChatPanel, 'BOTTOMRIGHT', 0, -PANEL_HEIGHT -SPACING - schisMod)
 
 	-- Buttons
 	for i = 1, BUTTON_NUM do
@@ -280,13 +312,14 @@ function mod:ChangeLayout()
 		bbuttons[i].text:SetPoint('CENTER', 1, 0)
 		bbuttons[i].text:SetJustifyH('CENTER')
 		bbuttons[i].text:SetTextColor(BUI:unpackColor(E.db.general.valuecolor))
+		--sui2CreateShadow(bbuttons[i],0,0,0,.4,3,3,3)--schism. needs moar shadow
 
 		-- ElvUI Config
 		if i == 1 then
-			bbuttons[i]:Point('TOPLEFT', Bui_rdtp, 'TOPRIGHT', SPACING, 0)
-			bbuttons[i]:Point('BOTTOMRIGHT', Bui_rdtp, 'BOTTOMRIGHT', PANEL_HEIGHT + SPACING, 0)
+			bbuttons[i]:Point('TOPLEFT', Bui_rdtp, 'TOPRIGHT', 0, 0)
+			bbuttons[i]:Point('BOTTOMRIGHT', Bui_rdtp, 'BOTTOMRIGHT', PANEL_HEIGHT-schisMod*2, 0)
 			bbuttons[i].parent = RightChatPanel
-			bbuttons[i].text:SetText('C')
+			bbuttons[i].text:SetText('E')
 
 			bbuttons[i]:SetScript('OnEnter', function(self)
 				GameTooltip:SetOwner(self, 'ANCHOR_TOPRIGHT', 0, 2 )
@@ -341,8 +374,8 @@ function mod:ChangeLayout()
 
 		-- Game menu button
 		elseif i == 2 then
-			bbuttons[i]:Point('TOPRIGHT', Bui_rdtp, 'TOPLEFT', -SPACING, 0)
-			bbuttons[i]:Point('BOTTOMLEFT', Bui_rdtp, 'BOTTOMLEFT', -(PANEL_HEIGHT + SPACING), 0)
+			bbuttons[i]:Point('TOPRIGHT', Bui_rdtp, 'TOPLEFT', 0, 0)
+			bbuttons[i]:Point('BOTTOMLEFT', Bui_rdtp, 'BOTTOMLEFT', -PANEL_HEIGHT+schisMod*2, 0)
 			bbuttons[i].text:SetText('G')
 
 			bbuttons[i]:SetScript('OnClick', BuiGameMenu_OnMouseUp)
@@ -365,8 +398,8 @@ function mod:ChangeLayout()
 
 		-- AddOns Button
 		elseif i == 3 then
-			bbuttons[i]:Point('TOPRIGHT', Bui_ldtp, 'TOPLEFT', -SPACING, 0)
-			bbuttons[i]:Point('BOTTOMLEFT', Bui_ldtp, 'BOTTOMLEFT', -(PANEL_HEIGHT + SPACING), 0)
+			bbuttons[i]:Point('TOPRIGHT', Bui_ldtp, 'TOPLEFT', 0, 0)
+			bbuttons[i]:Point('BOTTOMLEFT', Bui_ldtp, 'BOTTOMLEFT', -PANEL_HEIGHT+schisMod*2, 0)
 			bbuttons[i].parent = LeftChatPanel
 			bbuttons[i].text:SetText('A')
 
@@ -398,8 +431,8 @@ function mod:ChangeLayout()
 
 		-- LFG Button
 		elseif i == 4 then
-			bbuttons[i]:Point('TOPLEFT', Bui_ldtp, 'TOPRIGHT', SPACING, 0)
-			bbuttons[i]:Point('BOTTOMRIGHT', Bui_ldtp, 'BOTTOMRIGHT', PANEL_HEIGHT + SPACING, 0)
+			bbuttons[i]:Point('TOPLEFT', Bui_ldtp, 'TOPRIGHT', 0, 0)
+			bbuttons[i]:Point('BOTTOMRIGHT', Bui_ldtp, 'BOTTOMRIGHT', PANEL_HEIGHT-schisMod*2, 0)
 			bbuttons[i].text:SetText('L')
 
 			bbuttons[i]:SetScript('OnClick', function(self, btn)

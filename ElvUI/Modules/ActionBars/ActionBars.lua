@@ -275,6 +275,10 @@ function AB:CreateBar(id)
 	--Use this method instead of :SetAllPoints, as the size of the mover would otherwise be incorrect
 	bar.backdrop:SetPoint("TOPLEFT", bar, "TOPLEFT", E.Spacing, -E.Spacing)
 	bar.backdrop:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", -E.Spacing, E.Spacing)
+	bar.backdrop:SetFrameStrata("BACKGROUND")	--schism
+	bar.backdrop:SetFrameLevel(1)	--schism
+	--suiCreateShadow(bar.backdrop,0,0,0,.6,2,2,2) --schism
+	suiCreateShadow(bar.backdrop,	1,1,1, .4, 1, 1, 3) -- white
 
 	bar.buttons = {}
 	bar.bindButtons = self.barDefaults['bar'..id].bindButtons
@@ -582,20 +586,24 @@ function AB:StyleButton(button, noBackdrop, useMasque, ignoreNormal)
 	if count then
 		count:ClearAllPoints()
 		count:Point(countPosition, countXOffset, countYOffset)
-		count:FontTemplate(LSM:Fetch("font", self.db.font), self.db.fontSize, self.db.fontOutline)
+		--count:FontTemplate(LSM:Fetch("font", self.db.font), self.db.fontSize, self.db.fontOutline)
+		count:FontTemplate(LSM:Fetch("font", "Expressway"), 12, "THICKOUTLINE") --schism
 		count:SetTextColor(color.r, color.g, color.b)
 	end
 
 	if macroText then
 		macroText:ClearAllPoints()
 		macroText:Point("BOTTOM", 0, 1)
-		macroText:FontTemplate(LSM:Fetch("font", self.db.font), self.db.fontSize, self.db.fontOutline)
+		--macroText:FontTemplate(LSM:Fetch("font", self.db.font), self.db.fontSize, self.db.fontOutline)
+		macroText:FontTemplate(LSM:Fetch("font", "Expressway"), 7, "OUTLINE") --schism
 		macroText:SetTextColor(color.r, color.g, color.b)
 	end
 
 	if not button.noBackdrop and not button.backdrop and not button.useMasque then
 		button:CreateBackdrop(self.db.transparent and 'Transparent', true)
 		button.backdrop:SetAllPoints()
+		suiCreateShadow(button.backdrop,0,0,0,.9,1,1,1.2) --schism
+		--suiCreateShadow(button.backdrop,1,1,1,.6,1,1,.5) -- white
 	end
 
 	if flash then

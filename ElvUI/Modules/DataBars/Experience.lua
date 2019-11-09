@@ -124,7 +124,6 @@ function mod:ExperienceBar_OnClick() end
 function mod:UpdateExperienceDimensions()
 	self.expBar:Width(self.db.experience.width)
 	self.expBar:Height(self.db.experience.height)
-
 	self.expBar.text:FontTemplate(LSM:Fetch("font", self.db.experience.font), self.db.experience.textSize, self.db.experience.fontOutline)
 	self.expBar.rested:SetOrientation(self.db.experience.orientation)
 	self.expBar.statusBar:SetReverseFill(self.db.experience.reverseFill)
@@ -145,6 +144,11 @@ function mod:UpdateExperienceDimensions()
 	else
 		self.expBar:SetAlpha(1)
 	end
+
+	--self.expBar.statusBar:SetFrameStrata('BACKGROUND')
+	--self.expBar.statusBar:SetFrameLevel(2)
+	--self.expBar.rested:SetFrameStrata('BACKGROUND')
+	--self.expBar.rested:SetFrameLevel(1)
 end
 
 function mod:EnableDisable_ExperienceBar()

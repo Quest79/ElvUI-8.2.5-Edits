@@ -34,6 +34,9 @@ function Widget:Create(tp_frame)
   widget_frame:SetFrameLevel(tp_frame:GetFrameLevel() + 7)
   widget_frame.Icon = widget_frame:CreateTexture(nil, "OVERLAY")
   widget_frame.Icon:SetAllPoints(widget_frame)
+  widget_frame:SetFrameLevel(0) --schism
+  widget_frame:SetFrameStrata("BACKGROUND") --schism
+  widget_frame:SetAlpha(1) --schism
 
   -- if Masque then
   -- 	if not group then

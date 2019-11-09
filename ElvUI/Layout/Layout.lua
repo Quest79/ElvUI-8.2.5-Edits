@@ -39,6 +39,7 @@ function LO:Initialize()
 	self.TopPanel:Point('TOPLEFT', E.UIParent, 'TOPLEFT', -1, 1)
 	self.TopPanel:Point('TOPRIGHT', E.UIParent, 'TOPRIGHT', 1, 1)
 	self.TopPanel:Height(PANEL_HEIGHT)
+	suiCreateShadow(self.TopPanel,0,0,0,.6,3,3,3) --schism
 	self.TopPanel:SetScript('OnShow', Panel_OnShow)
 	Panel_OnShow(self.TopPanel)
 	E.FrameLocks.ElvUI_TopPanel = true

@@ -604,6 +604,28 @@ function E:FilterTableFromBlacklist(cleanTable, blacklistTable)
 	return tfbCleaned
 end
 
+
+
+--schism
+function suiCreateShadow(f, r, g, b, a, s1, s2, edge)
+
+	local sh = CreateFrame('Frame', nil, f)
+
+	sh:SetFrameLevel(1)
+	sh:SetFrameStrata(f:GetFrameStrata())
+	sh:SetOutside(f, s1, s2)
+	sh:SetBackdrop( {
+		edgeFile = LSM:Fetch('border', 'ElvUI GlowBorder'), edgeSize = E:Scale(edge),
+		insets = {left = E:Scale(5), right = E:Scale(5), top = E:Scale(5), bottom = E:Scale(5)},
+	})
+	--sh:SetBackdropColor(1, 0, 0, 0.6)
+	sh:SetBackdropBorderColor(r, g, b, a)
+
+	f.sh = sh
+end
+
+
+
 do	--The code in this function is from WeakAuras, credit goes to Mirrored and the WeakAuras Team
 	--Code slightly modified by Simpy
 	local function recurse(table, level, ret)

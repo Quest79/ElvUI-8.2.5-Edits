@@ -29,6 +29,9 @@ function UF:Construct_TargetTargetFrame(frame)
 	frame:Point('BOTTOM', E.UIParent, 'BOTTOM', 0, 75) --Set to default position
 	E:CreateMover(frame, frame:GetName()..'Mover', L["TargetTarget Frame"], nil, nil, nil, 'ALL,SOLO', nil, 'unitframe,targettarget,generalGroup')
 
+	suiCreateShadow(frame.Health,0,0,0,.7,3,3,3) --schism shadow
+	suiCreateShadow(frame.Power,0,0,0,.7,3,3,3) --schism shadow
+
 	frame.unitframeType = "targettarget"
 end
 

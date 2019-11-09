@@ -71,6 +71,34 @@ function UF:Construct_PlayerFrame(frame)
 	E:CreateMover(frame, frame:GetName()..'Mover', L["Player Frame"], nil, nil, nil, 'ALL,SOLO', nil, 'unitframe,player,generalGroup')
 
 	frame.unitframeType = "player"
+	
+	-- SCHISMUI START
+	suiCreateShadow(frame.Health,0,0,0,.7,3,3,3) --schism shadow
+	suiCreateShadow(frame.Power,0,0,0,.7,3,3,3) --schism shadow
+	--suiCreateShadow(frame.Health,	1,1,1,	.6, 2.7, 2.7, 4) -- white
+	--suiCreateShadow(frame.Power,	1,1,1,	.6, 2.7, 2.7, 4) -- white
+	--suiCreateShadow(frame.Power,	1,1,1, .25, 3, 3, 5) -- white
+	--suiCreateShadow(frame.Health,	1,1,1, .25, 3, 3, 5) -- white
+
+	local inCombat = UnitAffectingCombat('player')
+	--frame:RegisterEvent('UNIT_HEALTH_FREQUENT')
+	--frame:SetScript('OnEvent', print)
+
+--[[	if 'OnEvent' then
+		print('combat')
+	end--]]
+
+--[[	if UNIT_HEALTH_FREQUENT then
+		suiCreateShadow(frame.Health,1,0,0,1,3,3,1) --schism combat glow
+		suiCreateShadow(frame.Power,1,0,0,1,3,3,1) --schism combat glow
+		suiCreateShadow(frame.Health,1,0,0,.7,5,5,5) --schism combat glow
+		suiCreateShadow(frame.Power,1,0,0,.7,5,5,5) --schism combat glow
+	else
+		suiCreateShadow(frame.Health,1,0,0,0,3,3,1) --schism combat glow
+		suiCreateShadow(frame.Power,1,0,0,0,3,3,1) --schism combat glow
+	end--]]
+	-- SCHISMUI END
+
 end
 
 function UF:Update_PlayerFrame(frame, db)

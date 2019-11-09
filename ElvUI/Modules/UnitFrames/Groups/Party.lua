@@ -44,6 +44,11 @@ function UF:Construct_PartyFrames()
 		self.Power.frequentUpdates = false;
 		self.PowerPrediction = UF:Construct_PowerPrediction(self)
 
+		suiCreateShadow(self.Health,0,0,0,	.7, 3, 3, 3) --schism
+		suiCreateShadow(self.Power,	0,0,0,	.7, 3, 3, 3)  --Schism
+		--suiCreateShadow(self.Power,	1,1,1, .25, 3, 3, 5) -- white
+		--suiCreateShadow(self.Health,	1,1,1, .25, 3, 3, 5) -- white
+
 		self.Portrait3D = UF:Construct_Portrait(self, 'model')
 		self.Portrait2D = UF:Construct_Portrait(self, 'texture')
 		self.InfoPanel = UF:Construct_InfoPanel(self)
