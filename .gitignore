@@ -3181,3 +3181,19 @@ WoWGatheringNodes/Localization/objectNames.zhCn.lua
 !BugGrabber/License.txt
 !BugGrabber/load.xml
 !BugGrabber/locales.lua
+ISBoxer/ISBoxer_Character_Set-Druids.lua
+ISBoxer/ISBoxer_Character_Set-Paladins - Classic.lua
+ISBoxer/ISBoxer_Character_Set.lua
+ISBoxer/ISBoxer_Character-Ahshala-Lightbringer.lua
+ISBoxer/ISBoxer_Character-Etheræl.lua
+ISBoxer/ISBoxer_Character-Ilæsa.lua
+ISBoxer/ISBoxer_Character-Lilyssæ.lua
+ISBoxer/ISBoxer_Character-Loreleia-Lightbringer.lua
+ISBoxer/ISBoxer_Character-Meræth.lua
+ISBoxer/ISBoxer_Character-Mylaerla-Lightbringer.lua
+ISBoxer/ISBoxer_Character-Mythalæs.lua
+ISBoxer/ISBoxer_Character-Sylmare-Lightbringer.lua
+ISBoxer/ISBoxer_Character-Zestari-Lightbringer.lua
+ISBoxer/ISBoxer_Character.lua
+ISBoxer/ISBoxer.lua
+ISBoxer/ISBoxer.toc
