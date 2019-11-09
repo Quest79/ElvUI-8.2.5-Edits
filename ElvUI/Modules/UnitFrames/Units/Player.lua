@@ -73,8 +73,8 @@ function UF:Construct_PlayerFrame(frame)
 	frame.unitframeType = "player"
 	
 	-- SCHISMUI START
-	suiCreateShadow(frame.Health,0,0,0,.7,3,3,3) --schism shadow
-	suiCreateShadow(frame.Power,0,0,0,.7,3,3,3) --schism shadow
+	suiCreateShadow(frame.Health,0,0,0,.77,3,3,3) --schism shadow
+	suiCreateShadow(frame.Power,0,0,0,.77,3,3,3) --schism shadow
 	--suiCreateShadow(frame.Health,	1,1,1,	.6, 2.7, 2.7, 4) -- white
 	--suiCreateShadow(frame.Power,	1,1,1,	.6, 2.7, 2.7, 4) -- white
 	--suiCreateShadow(frame.Power,	1,1,1, .25, 3, 3, 5) -- white
