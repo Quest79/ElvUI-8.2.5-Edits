@@ -29,6 +29,18 @@ function UF:Construct_HealthBar(frame, bg, text, textPos)
 	health.PostUpdate = self.PostUpdateHealth
 	health.PostUpdateColor = self.PostUpdateHealthColor
 
+	--health.bg2 = health:CreateTexture(nil, 'OVERLAY')
+	--health.bg2:SetAllPoints()
+	--health.bg2:SetTexture(E.media.blankTex)
+	--health.bg2:SetColorTexture(1, 1, 1, 0.5)
+	healtho = CreateFrame('Frame', nil, health)
+	--healtho:SetAllPoints()
+	healtho:Point("TOPRIGHT", health, "TOPRIGHT",-1,-1)
+	healtho:Point("BOTTOMLEFT", health, "BOTTOMLEFT", 1,1)
+	suiCreateShadow(healtho,0,0,0,.8,2,2,1)
+	healtho:SetFrameLevel(50)
+
+
 	if bg then
 		health.bg = health:CreateTexture(nil, 'BORDER')
 		health.bg:SetAllPoints()

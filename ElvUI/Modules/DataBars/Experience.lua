@@ -45,7 +45,7 @@ function mod:UpdateExperience(event)
 		if max <= 0 then max = 1 end
 		bar.statusBar:SetMinMaxValues(0, max)
 		bar.statusBar:SetValue(cur - 1 >= 0 and cur - 1 or 0)
-		bar.statusBar:SetValue(cur)
+		bar.statusBar:SetValue(cur) 
 
 		local rested = GetXPExhaustion()
 		local text = ''
@@ -130,6 +130,8 @@ function mod:UpdateExperienceDimensions()
 
 	self.expBar.statusBar:SetOrientation(self.db.experience.orientation)
 	self.expBar.rested:SetReverseFill(self.db.experience.reverseFill)
+
+	suiCreateShadow(self.expBar,	0,0,0, .9, 1.5, 1.5, 2.3)
 
 	if self.db.experience.orientation == "HORIZONTAL" then
 		self.expBar.rested:SetRotatesTexture(false)

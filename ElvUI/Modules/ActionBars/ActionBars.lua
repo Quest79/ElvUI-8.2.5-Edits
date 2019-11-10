@@ -278,7 +278,8 @@ function AB:CreateBar(id)
 	bar.backdrop:SetFrameStrata("BACKGROUND")	--schism
 	bar.backdrop:SetFrameLevel(1)	--schism
 	--suiCreateShadow(bar.backdrop,0,0,0,.6,2,2,2) --schism
-	suiCreateShadow(bar.backdrop,	1,1,1, .4, 1, 1, 3) -- white
+	--suiCreateShadow(bar.backdrop,	1,1,1, .4, 1, 1, 3) -- white
+	suiCreateShadow(bar.backdrop,	0,0,0, .7, 1, 1, 2) 
 
 	bar.buttons = {}
 	bar.bindButtons = self.barDefaults['bar'..id].bindButtons
@@ -602,7 +603,7 @@ function AB:StyleButton(button, noBackdrop, useMasque, ignoreNormal)
 	if not button.noBackdrop and not button.backdrop and not button.useMasque then
 		button:CreateBackdrop(self.db.transparent and 'Transparent', true)
 		button.backdrop:SetAllPoints()
-		suiCreateShadow(button.backdrop,0,0,0,.9,1,1,1.2) --schism
+		suiCreateShadow(button.backdrop,0,0,0,1,1,1,1.3) --schism
 		--suiCreateShadow(button.backdrop,1,1,1,.6,1,1,.5) -- white
 	end
 

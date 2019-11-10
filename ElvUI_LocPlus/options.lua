@@ -194,7 +194,7 @@ function LP:AddOptions()
 						min = 0, max = 1, step = 0.1,
 						disabled = function() return not E.db.locplus.mouseover end,
 						set = function(info, value) E.db.locplus[ info[#info] ] = value; LP:MouseOver() end,
-					},			
+					},		
 				},
 			},
 			gen_tt = {

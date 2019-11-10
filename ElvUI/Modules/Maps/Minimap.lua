@@ -411,8 +411,8 @@ function M:Initialize()
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", mmholder, "TOPRIGHT", -E.Border, -E.Border)
 
-	--suiCreateShadow(Minimap.backdrop,	0,0,0, .2, 3, 3, 3) 							-- schism shadow
-	suiCreateShadow(Minimap.backdrop,	1,1,1, .3, 1, 1, 2) -- white
+	suiCreateShadow(Minimap.backdrop,	0,0,0, .7, 1, 1, 2)  							-- schism shadow
+	--suiCreateShadow(Minimap.backdrop,	1,1,1, .3, 1, 1, 2) -- white
 	Minimap.backdrop:SetPoint("TOPLEFT", mmholder, "TOPLEFT", 0, 20) 			-- schism: useful bar backdrop boarder points. Doesnt alter bar1?
 	Minimap.backdrop:SetPoint("BOTTOMRIGHT", mmholder, "BOTTOMRIGHT", 0, 0) 	-- schism
 	--Minimap.backdrop:SetBackdropColor(0, 0, 0, 1) 								-- schism

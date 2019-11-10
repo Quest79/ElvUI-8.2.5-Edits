@@ -130,8 +130,10 @@ function A:CreateIcon(button)
 	button.time:Point("TOP", button, 'BOTTOM', 1 + self.db.timeXOffset, 0 + self.db.timeYOffset)
 
 	button.highlight = button:CreateTexture(nil, "HIGHLIGHT")
-	button.highlight:SetColorTexture(1, 1, 1, 0.45)
+	button.highlight:SetColorTexture(1, 1, 1, 0.35)
 	button.highlight:SetInside()
+
+	suiCreateShadow(button,1,1,1,.7,.6,.6,1) --schism shadow
 
 	E:SetUpAnimGroup(button)
 
@@ -229,8 +231,10 @@ function A:UpdateAura(button, index)
 		if filter == "HARMFUL" then
 			local color = _G.DebuffTypeColor[dtype or ""]
 			button:SetBackdropBorderColor(color.r, color.g, color.b)
+			suiCreateShadow(button,1,0,0,.9,.7,.7,1)
 		else
 			button:SetBackdropBorderColor(unpack(E.media.bordercolor))
+			--suiCreateShadow(button,1,1,1,.7,.6,.6,1)
 		end
 
 		button.texture:SetTexture(texture)

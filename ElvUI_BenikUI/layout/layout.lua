@@ -266,7 +266,7 @@ function mod:ChangeLayout()
 	Bui_ldtp:Point('BOTTOMRIGHT', LeftChatPanel, 'BOTTOMRIGHT', -PANEL_HEIGHT, -PANEL_HEIGHT)
 	Bui_ldtp:Style('Outside', nil, false, true)
 	--sui2CreateShadow(Bui_ldtp,0,0,0,.4,3,3,3) --schism
-	suiCreateShadow(Bui_ldtp,	1,1,1, .4, 1, 1, 3) 
+	suiCreateShadow(Bui_ldtp,	0,0,0, .7, 1, 1, 2) 
 
 	-- Right dt panel
 	Bui_rdtp:SetFrameStrata('BACKGROUND')
@@ -274,7 +274,7 @@ function mod:ChangeLayout()
 	Bui_rdtp:Point('BOTTOMRIGHT', RightChatPanel, 'BOTTOMRIGHT', -PANEL_HEIGHT+schisMod*3, -PANEL_HEIGHT)
 	Bui_rdtp:Style('Outside', nil, false, true)
 	--sui2CreateShadow(Bui_rdtp,0,0,0,.4,3,3,3) --schism
-	suiCreateShadow(Bui_rdtp,	1,1,1, .4, 1, 1, 3) 
+	suiCreateShadow(Bui_rdtp,	0,0,0, .7, 1, 1, 2) 
 
 	-- Middle dt panel
 	Bui_mdtp:SetFrameStrata('BACKGROUND')
@@ -285,7 +285,7 @@ function mod:ChangeLayout()
 	--Bui_mdtp:Width(E.db.benikui.datatexts.middle.width or 400)
 	--Bui_mdtp:Height(E.db.benikui.datatexts.middle.height or PANEL_HEIGHT)
 	Bui_mdtp:Style('Outside', nil, false, true)
-	suiCreateShadow(Bui_mdtp,	1,1,1, .4, 1, 1, 3) 
+	suiCreateShadow(Bui_mdtp,	0,0,0, .7, 1, 1, 2) 
 
 	E:CreateMover(Bui_mdtp, "BuiMiddleDtMover", L['BenikUI Middle DataText'], nil, nil, nil, 'ALL,BenikUI', nil, 'benikui,datatexts')
 

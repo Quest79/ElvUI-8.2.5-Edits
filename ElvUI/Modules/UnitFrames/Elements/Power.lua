@@ -33,6 +33,13 @@ function UF:Construct_PowerBar(frame, bg, text, textPos)
 	power.PostUpdate = self.PostUpdatePower
 	power.PostUpdateColor = self.PostUpdatePowerColor
 
+	powero = CreateFrame('Frame', nil, power)
+	--healtho:SetAllPoints()
+	powero:Point("TOPRIGHT", power, "TOPRIGHT",-1,-1)
+	powero:Point("BOTTOMLEFT", power, "BOTTOMLEFT", 1,1)
+	suiCreateShadow(powero,0,0,0,.35,2,2,1)
+	powero:SetFrameLevel(11)
+
 	if bg then
 		power.BG = power:CreateTexture(nil, 'BORDER')
 		power.BG:SetAllPoints()
