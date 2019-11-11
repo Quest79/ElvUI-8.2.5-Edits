@@ -67,12 +67,18 @@ local function UpdateSettings(frame)
     insets = { left = 0, right = 0, top = 0, bottom = 0 }
 	})
 	frame:SetBackdropBorderColor(1, 0.85, 0, 1)
+	frame:SetFrameLevel(0) --schism
+	frame:SetFrameStrata("BACKGROUND") --schism
+	frame:SetAlpha(.3) --schism
 end
 
 
 local function UpdateWidgetFrame(frame, unit)
 	if unit.isElite and not unit.isMouseover then
 		frame:Show()
+		frame:SetFrameLevel(0) --schism
+		frame:SetFrameStrata("BACKGROUND") --schism
+		frame:SetAlpha(.3) --schism
 	else
 		frame:_Hide()
 	end
@@ -110,6 +116,9 @@ end
 local function CreateWidgetFrame(parent)
 	-- Required Widget Code
 	local frame = CreateFrame("Frame", nil, parent)
+	frame:SetFrameLevel(0) --schism
+	frame:SetFrameStrata("BACKGROUND") --schism
+	frame:SetAlpha(.3) --schism
 	frame:Hide()
 
 	-- Custom Code III
